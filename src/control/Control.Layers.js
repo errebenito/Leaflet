@@ -46,19 +46,19 @@ L.Control.Layers = L.Control.extend({
 
 	addBaseLayer: function (layer, name) {
 		this._addLayer(layer, name);
-		return this._update();
+		return (this._map === null) ? this : this._update;	
 	},
 
 	addOverlay: function (layer, name) {
 		this._addLayer(layer, name, true);
-		return this._update();
+		return (this._map === null) ? this : this._update;
 	},
 
 	removeLayer: function (layer) {
 		layer.off('add remove', this._onLayerChange, this);
 
 		delete this._layers[L.stamp(layer)];
-		return this._update();
+		return (this._map === null) ? this : this._update;
 	},
 
 	_initLayout: function () {
